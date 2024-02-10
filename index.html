@@ -17,12 +17,53 @@
       <div class="logo">
         <img src="images/dfaalt.jpg" alt="" />
       </div>
-      <div class="btn">
+      <div class="btn-lightmode">
         <button onclick="toggleLightMode()">Light Mode</button>
       </div>
       <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Enter book title..." />
-        <button onclick="searchBooks()">Search</button>
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Enter book title..."
+          />
+          <button onclick="searchBooks()">Search</button>
+        </div>
+        <div class="category">
+          <select id="categorySelect">
+            <option value="all">All Categories</option>
+            <option value="fiction">Fiction</option>
+            <option value="non-fiction">Non-fiction</option>
+            <option value="literature">Literature</option>
+            <option value="history">History</option>
+            <option value="science">Science</option>
+            <option value="technology">Technology</option>
+            <option value="art-and-photography">Art and Photography</option>
+            <option value="business-and-economics">
+              Business and Economics
+            </option>
+            <option value="computers-and-information-technology">
+              Computers and Information Technology
+            </option>
+            <option value="health-and-fitness">Health and Fitness</option>
+            <option value="self-help-and-personal-development">
+              Self-Help and Personal Development
+            </option>
+            <option value="religion-and-spirituality">
+              Religion and Spirituality
+            </option>
+            <option value="children-and-teenagers">
+              Children and Teenagers
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="sort">
+        <label for="sortSelect">Sort by: </label>
+        <select id="sortSelect">
+          <option value="latest">Latest</option>
+          <option value="oldest">Oldest</option>
+        </select>
       </div>
       <div id="searchResults"></div>
       <h2>Recommended Books</h2>
