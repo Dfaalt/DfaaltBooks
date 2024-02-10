@@ -26,6 +26,76 @@ body {
   background-color: #1f242d;
 }
 
+/* Keyframes untuk animasi */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* header style */
+header {
+  background-color: #1f242d;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  animation: slideIn 0.5s ease-in-out; /* Menambahkan animasi slideIn */
+}
+
+/* Animasi untuk header h1 */
+header h1 {
+  margin: 0;
+  font-size: 35px;
+  animation: fadeIn 1s ease-in-out; /* Menambahkan animasi fadeIn */
+}
+
+span {
+  color: #0ef;
+  font-weight: bold;
+}
+
+/* Keyframes untuk animasi fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi untuk tautan di dalam header */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 15px;
+  animation: slideIn 0.5s ease-in-out; /* Menambahkan animasi slideIn */
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffc107;
+}
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -33,6 +103,23 @@ body {
   padding: 20px;
   background-color: #323946;
   animation: fadeIn 0.5s ease forwards;
+}
+
+.container h1 {
+  color: #0ef;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 15px;
+  animation: example 3s ease-in-out infinite;
+}
+
+.container h2 {
+  color: #0ef;
+  font-weight: bold;
+}
+
+.container img {
+  border-radius: 2.5%;
 }
 
 /* Light Mode */
@@ -66,29 +153,14 @@ body {
   background-color: #f5f5f5;
 }
 
-.container h1 {
-  color: #0ef;
-  font-weight: bold;
-  animation: example 3s ease-in-out infinite;
-}
-
-.container h2 {
-  color: #0ef;
-  font-weight: bold;
-}
-
-.container img {
-  border-radius: 2.5%;
-}
-
 /* style logo */
 .logo {
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%);
-  width: 150px;
-  height: 150px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -306,6 +378,32 @@ button:active {
 
 .book-info p a:active {
   color: #ff0000;
+}
+
+/* footer style */
+footer {
+  background-color: #1f242d;
+  color: #fff; /* Warna teks */
+  padding: 20px; /* Ruang dalam footer */
+  text-align: center; /* Teks rata tengah */
+  left: 0; /* Footer dimulai dari sisi kiri layar */
+  bottom: 0; /* Footer akan melekat pada bagian bawah layar */
+}
+
+footer p {
+  margin: 0; /* Menghapus margin bawaan pada paragraf */
+  font-size: 14px; /* Ukuran teks */
+}
+
+/* Efek hover untuk teks pada footer */
+footer p:hover {
+  color: #ffa500; /* Warna teks berubah saat dihover */
+  cursor: pointer; /* Pointer cursor saat dihover */
+}
+
+/* Efek transisi untuk perubahan warna teks saat dihover */
+footer p:hover {
+  transition: color 0.3s ease; /* Transisi berlangsung selama 0.3 detik */
 }
 
 /* For screens smaller than 768px */
