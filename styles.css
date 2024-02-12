@@ -99,6 +99,7 @@ nav ul li a:hover {
 .container {
   max-width: 800px;
   margin: 0 auto;
+  border-radius: 5px;
   text-align: center;
   padding: 20px;
   background-color: #323946;
@@ -288,7 +289,6 @@ button:active {
 /* style sort by */
 .sort {
   padding: 10px;
-
   border-radius: 5px;
   box-shadow: 0px 5px 5px #1f242d;
   margin-bottom: 20px;
@@ -332,6 +332,13 @@ button:active {
 
 #searchResults,
 #recommendedBooks {
+  display: grid;
+  grid-template-columns: repeat(
+    1,
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* Menggunakan auto-fill untuk membuat grid dinamis */
+  gap: 20px;
   text-align: left;
   margin-bottom: 50px;
   color: #fff;
