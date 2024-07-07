@@ -295,3 +295,49 @@ footer {
   background-color: #ccc;
   transition: background-color 0.3s;
 }
+
+/* For mobile screens (less than 768px wide) */
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 23px;
+    margin: 0;
+  }
+
+  header h1 span {
+    font-size: 23px;
+  }
+
+  .container {
+    padding: 70px;
+  }
+
+  .btn-lightmode {
+    text-align: left;
+    margin-top: 13px;
+  }
+
+  .btn-lightmode button {
+    display: block;
+    margin: 10px 0 10px 0;
+    margin-right: 20px;
+  }
+
+  .search-box {
+    text-align: center;
+  }
+
+  .search-box input {
+    width: calc(40% - 40px);
+    margin-bottom: 10px;
+  }
+
+  .search-box button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}
