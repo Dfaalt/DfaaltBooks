@@ -1,375 +1,193 @@
-@keyframes fadeInOnLoad {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* General styles */
 body {
-  animation: fadeInOnLoad 1s ease;
   font-family: Arial, sans-serif;
+  background-color: #1f242d;
+  color: #f1f1f1;
   margin: 0;
   padding: 0;
-  background-color: #1f242d;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* header style */
-header {
-  position: fixed; /* Membuat header tetap di tempatnya */
-  top: 0; /* Menempatkan header di bagian atas layar */
-  width: 100%; /* Memberikan lebar header sebesar layar */
-  background-color: #1f242d;
-  color: #fff;
-  padding: 15px;
-  text-align: center;
-  z-index: 999; /* Menentukan urutan tumpukan untuk memastikan header muncul di atas konten lain */
-  animation: slideIn 0.5s ease-in-out; /* Menambahkan animasi slideIn */
-  box-shadow: 0px 2px 5px #1f242d;
+/* Fade-in animation for body content */
+body.fade-in {
+  animation: fadeIn 1s ease-in;
 }
 
-/* Animasi untuk header h1 */
-header h1 {
-  margin: 0;
-  font-size: 23px;
-  animation: fadeIn 1s ease-in-out; /* Menambahkan animasi fadeIn */
-}
-
-span {
-  color: #0ef;
-  font-weight: bold;
-}
-
-/* Keyframes untuk animasi */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Keyframes untuk animasi fadeIn */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-20px); /* Start from above */
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0); /* Move to original position */
   }
 }
 
-/* Animasi untuk tautan di dalam header */
+.btn-lightmode {
+  position: absolute;
+  top: 80%;
+  right: 10px; /* Adjust as needed */
+  transform: translateY(-50%); /* Center vertically */
+  transition: transform 0.3s;
+}
+
+.btn-lightmode button {
+  background-color: #f1f1f1;
+  color: #1a1a1a;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.btn-lightmode button:hover {
+  transform: scale(1.1);
+}
+
+header {
+  background-color: #323946;
+  padding: 10px 0;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  animation: fadeIn 1s forwards;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+header span {
+  color: #0091ea;
+}
+
 nav ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
-  margin-top: 10px;
-  animation: slideIn 0.5s ease-in-out; /* Menambahkan animasi slideIn */
 }
 
 nav ul li {
   display: inline;
-  margin-right: 20px;
+  margin: 0 10px;
 }
 
 nav ul li a {
-  color: #fff;
-  font-size: 18px;
+  color: #f1f1f1;
   text-decoration: none;
   transition: color 0.3s;
 }
 
 nav ul li a:hover {
-  color: #ffc107;
+  color: #149ddd;
+}
+
+.search-box input {
+  padding: 10px;
+  width: 20%;
+  border: none;
+  border-radius: 10px;
+  transition: box-shadow 0.3s;
+}
+
+.search-box input:focus {
+  box-shadow: 0 0 10px #0091ea;
+}
+
+.search-box button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #0091ea;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.search-box button:hover {
+  background-color: #149ddd;
+  transform: scale(1.05);
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  margin-top: 85px;
-  border-radius: 5px;
-  text-align: center;
+  max-width: 1200px;
+  margin: 120px auto 0 auto; /* Added top margin to avoid overlap with fixed header */
   padding: 20px;
-  background-color: #323946;
-  animation: fadeIn 0.5s ease forwards;
+  opacity: 0; /* Initially hide container */
+  animation: fadeIn 1s forwards; /* Fade in animation for container */
 }
 
-.container h1 {
-  color: #0ef;
-  font-weight: bold;
-  margin-top: 0;
-  margin-bottom: 15px;
-  animation: example 3s ease-in-out infinite;
-}
-
-.container h2 {
-  color: #0ef;
-  font-weight: bold;
-}
-
-.container img {
-  border-radius: 2.5%;
-}
-
-/* Light Mode */
-.btn-lightmode button {
-  border-radius: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-lightmode button:hover {
-  background-color: #0056b3;
-}
-
-.light-mode body {
-  background-color: #ccc;
-  color: #000000;
-}
-
-.light-mode #searchResults,
-.light-mode #recommendedBooks,
-.light-mode .sort label {
-  color: #000000;
-}
-
-.light-mode .container {
-  background-color: #f5f5f5;
-}
-
-/* style logo */
-.logo {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
-  width: 125px;
-  height: 125px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #0ef;
-  margin-bottom: 15px;
-}
-
-.logo img {
-  max-width: 100%;
-  max-height: 100%;
-  transition: transform 0.5s ease;
-}
-
-.logo:hover img {
-  transform: scale(1.1);
-}
-
-.logo::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.logo:hover::before {
-  opacity: 1;
-}
-
-.logo::after {
-  content: "Dfaalt";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #0ef;
-  font-size: 40px;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.logo:hover::after {
-  opacity: 1;
-}
-
-@keyframes example {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Search & Category Style */
 .search-container {
   display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.sort {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-#searchInput {
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #007bff;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  width: 300px;
-  transition: border-color 0.3s ease;
-}
-
-#searchInput:focus,
-#categorySelect:focus {
-  border-color: #007bff; /* Warna border saat dalam keadaan fokus */
-  outline: none; /* Menghapus outline bawaan pada elemen yang fokus */
-  box-shadow: 0 0 0 1px #007bff; /* Menambahkan shadow saat elemen dalam keadaan fokus */
-}
-
-button {
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-button:active {
-  background-color: navy;
-}
-
-#categorySelect {
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #007bff;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  margin-right: 8rem;
-  width: 300px;
-  transition: border-color 0.3s ease;
-}
-
-/* style sort by */
-.sort {
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 5px 5px #1f242d;
-  margin-bottom: 20px;
 }
 
 .sort label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
+  margin-bottom: 10px; /* Space between label and select box */
+  color: #f1f1f1; /* Ensure label text is visible in dark mode */
 }
 
+.category select,
 .sort select {
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 2px solid #007bff;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-  color: #333;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
+  padding: 10px;
+  border: none;
+  background-color: #323946;
+  color: #f1f1f1;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.sort select:hover {
-  border-color: #007bff;
-}
-
-.sort select:focus {
-  outline: none;
-  border-color: #66afe9;
-  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
-}
-
-.sort option {
-  background-color: #fff;
-  color: #333;
-}
-
-.sort option:hover {
-  background-color: #e0e0e0;
-}
-
-#searchResults,
-#recommendedBooks {
-  display: grid;
-  grid-template-columns: repeat(
-    1,
-    auto-fill,
-    minmax(300px, 1fr)
-  ); /* Menggunakan auto-fill untuk membuat grid dinamis */
-  gap: 20px;
-  text-align: left;
-  margin-bottom: 50px;
-  color: #fff;
-  font-weight: 500;
-}
-
-#searchResults h2,
-#recommendedBooks h2 {
-  color: #bada55;
+/* Animation for book elements */
+@keyframes bookAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .book {
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 2.5px solid #0ef;
-  border-radius: 5px;
-  overflow: hidden;
+  background-color: #323946;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
+  animation: bookAppear 0.5s forwards;
+}
+
+.book:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .book img {
-  float: left;
-  margin-right: 20px;
-  transition: transform 0.3s ease;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s;
 }
 
 .book img:hover {
@@ -377,75 +195,103 @@ button:active {
 }
 
 .book-info {
-  overflow: hidden;
+  text-align: left;
+  transition: transform 0.3s, color 0.3s;
 }
 
-.book-info p a {
-  color: #007bff;
-  transition: color 0.3s ease;
+.book-info a {
+  color: #149ddd;
+  transition: color 0.3s;
 }
 
-.book-info p a:hover {
-  color: #0056b3;
+.book-info a:hover {
+  color: #1a9ddd;
 }
 
-.book-info p a:active {
-  color: #ff0000;
+.book-info h2 {
+  font-size: 1.2em;
 }
 
-/* footer style */
+.book-info p {
+  font-size: 0.9em;
+}
+
 footer {
-  background-color: #1f242d;
-  color: #fff; /* Warna teks */
-  padding: 20px; /* Ruang dalam footer */
-  text-align: center; /* Teks rata tengah */
-  left: 0; /* Footer dimulai dari sisi kiri layar */
-  bottom: 0; /* Footer akan melekat pada bagian bawah layar */
+  background-color: #323946;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  transition: background-color 0.3s;
 }
 
-footer p {
-  margin: 0; /* Menghapus margin bawaan pada paragraf */
-  font-size: 14px; /* Ukuran teks */
+/* Responsive grid for books */
+#searchResults {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-top: 25px;
 }
 
-/* Efek hover untuk teks pada footer */
-footer p:hover {
-  color: #ffa500; /* Warna teks berubah saat dihover */
-  cursor: pointer; /* Pointer cursor saat dihover */
+#recommendedBooks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-/* Efek transisi untuk perubahan warna teks saat dihover */
-footer p:hover {
-  transition: color 0.3s ease; /* Transisi berlangsung selama 0.3 detik */
+/* Light mode styles */
+.light-mode {
+  background-color: #f1f1f1;
+  color: #1a1a1a;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* For screens smaller than 768px */
-@media (max-width: 767px) {
-  .container {
-    padding: 10px;
-  }
-  .logo {
-    width: 100px;
-    height: 100px;
-    font-size: 24px;
-  }
-  #searchInput,
-  #categorySelect {
-    width: calc(100% - 20px);
-    margin-right: 0;
-  }
+.light-mode header {
+  background-color: #ddd;
 }
 
-/* For screens between 768px and 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .container {
-    max-width: 600px;
-  }
+.light-mode nav ul li a {
+  color: #1a1a1a;
+  transition: color 0.3s;
 }
 
-/* For screens larger than 1024px */
-@media (min-width: 1024px) {
-  .container {
-    max-width: 800px;
-  }
+.light-mode .btn-lightmode button {
+  background-color: #1a1a1a;
+  color: #f1f1f1;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.light-mode .search-box button {
+  background-color: #1a1a1a;
+  color: #f1f1f1;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.light-mode .sort label {
+  color: #1a1a1a;
+  transition: color 0.3s;
+}
+
+.light-mode .category select,
+.light-mode .sort select {
+  background-color: #323946;
+  color: #f1f1f1;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.light-mode .book {
+  background-color: #f1f1f1;
+  color: #1a1a1a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.light-mode .book:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode footer {
+  background-color: #ccc;
+  transition: background-color 0.3s;
 }

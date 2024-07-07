@@ -1,3 +1,11 @@
+// Function to capitalize each word
+function capitalizeWords(str) {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 // Function to search for books with sorting option
 function searchBooks(sortBy) {
   let searchInput = document.getElementById("searchInput").value;
@@ -11,29 +19,40 @@ function searchBooks(sortBy) {
 
   fetch(url)
     .then((response) => response.json())
-    .then((data) => displayBooks(data.items, "searchResults", sortBy)) // Pass sortBy parameter
+    .then((data) => {
+      displayBooks(data.items, "searchResults", sortBy);
+      updateHeader("searchResultsHeader", searchInput, category); // Update header with search input and category
+    })
     .catch((error) => console.log(error));
 }
 
-// Event listener for sorting options in search
-let sortSelectSearch = document.getElementById("sortSelect");
-sortSelectSearch.addEventListener("change", function () {
-  let selectedSort = sortSelectSearch.value;
-  if (selectedSort === "latest" || selectedSort === "oldest") {
-    searchBooks(selectedSort); // Call searchBooks with sorting option
+// Function to recommend books based on category and sort option
+function recommendBooks(category, sortBy = "latest") {
+  let url = "https://www.googleapis.com/books/v1/volumes?q=subject:" + category;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      displayBooks(data.items, "recommendedBooks", sortBy);
+      // updateHeader("recommendedBooksHeader", "", category);
+    })
+    .catch((error) => console.log(error));
+}
+
+// Function to update the header with search input and category
+function updateHeader(headerId, searchInput, category) {
+  let header = document.getElementById(headerId);
+  if (searchInput) {
+    header.innerHTML = `Search Results for "${searchInput}" in ${
+      category !== "all"
+        ? capitalizeWords(category.replace(/-/g, " "))
+        : "All Categories"
+    }`;
+  } else {
+    header.innerHTML = `Books in ${capitalizeWords(
+      category.replace(/-/g, " ")
+    )}`;
   }
-});
-
-// Event listener for category selection
-let categorySelect = document.getElementById("categorySelect");
-categorySelect.addEventListener("change", function () {
-  searchBooks(); // Call searchBooks when category changes
-});
-
-// Function to light/dark mode
-function toggleLightMode() {
-  var body = document.body;
-  body.classList.toggle("light-mode");
 }
 
 // Function to display books
@@ -58,31 +77,27 @@ function displayBooks(books, containerId, sortBy = "latest") {
 
   books.forEach((book) => {
     let bookInfo = `
-        <div class="book">
-          <img src="${book.volumeInfo.imageLinks.thumbnail}" alt="Book Cover">
-          <div class="book-info">
-            <h2>${book.volumeInfo.title}</h2>
-            <p>Author: ${book.volumeInfo.authors}</p>
-            <p>Publisher: ${book.volumeInfo.publisher}</p>
-            <p>Published Date: ${book.volumeInfo.publishedDate}</p>
-            <p>Pages: ${book.volumeInfo.pageCount}</p>
-            <p>Description: ${book.volumeInfo.description}</p>
-            <p><a href="${book.volumeInfo.previewLink}" target="_blank">Preview</a></p>
-          </div>
+      <div class="book">
+        <img src="${
+          book.volumeInfo.imageLinks?.thumbnail || "no-image-available.png"
+        }" alt="Book Cover">
+        <div class="book-info">
+          <h2>${book.volumeInfo.title}</h2>
+          <p>Author: ${book.volumeInfo.authors?.join(", ") || "Unknown"}</p>
+          <p>Publisher: ${book.volumeInfo.publisher || "Unknown"}</p>
+          <p>Published Date: ${book.volumeInfo.publishedDate || "Unknown"}</p>
+          <p>Pages: ${book.volumeInfo.pageCount || "Unknown"}</p>
+          <p>Description: ${
+            book.volumeInfo.description || "No description available"
+          }</p>
+          <p><a href="${
+            book.volumeInfo.previewLink
+          }" target="_blank">Preview</a></p>
         </div>
-      `;
+      </div>
+    `;
     container.innerHTML += bookInfo;
   });
-}
-
-// Function to recommend books based on category
-function recommendBooks(category) {
-  let url = "https://www.googleapis.com/books/v1/volumes?q=subject:" + category;
-
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => displayBooks(data.items, "recommendedBooks"))
-    .catch((error) => console.log(error));
 }
 
 // Call the recommendBooks function with a specific category
@@ -96,7 +111,22 @@ searchInput.addEventListener("keyup", function (event) {
   }
 });
 
-// Event listener for sorting options
+// Event listener for sorting options in search
+let sortSelectSearch = document.getElementById("sortSelect");
+sortSelectSearch.addEventListener("change", function () {
+  let selectedSort = sortSelectSearch.value;
+  if (selectedSort === "latest" || selectedSort === "oldest") {
+    searchBooks(selectedSort); // Call searchBooks with sorting option
+  }
+});
+
+// Event listener for category selection
+let categorySelect = document.getElementById("categorySelect");
+categorySelect.addEventListener("change", function () {
+  searchBooks(); // Call searchBooks when category changes
+});
+
+// Event listener for sorting options in recommendations
 let sortSelect = document.getElementById("sortSelect");
 sortSelect.addEventListener("change", function () {
   let selectedSort = sortSelect.value;
@@ -105,12 +135,8 @@ sortSelect.addEventListener("change", function () {
   }
 });
 
-// Function to recommend books based on category and sort option
-function recommendBooks(category, sortBy) {
-  let url = "https://www.googleapis.com/books/v1/volumes?q=subject:" + category;
-
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => displayBooks(data.items, "recommendedBooks", sortBy))
-    .catch((error) => console.log(error));
+// Function to light/dark mode
+function toggleLightMode() {
+  var body = document.body;
+  body.classList.toggle("light-mode");
 }

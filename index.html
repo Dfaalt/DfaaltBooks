@@ -10,9 +10,16 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="shortcut icon" href="images/logoBuku.ico" type="image/x-icon" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
+      <div class="btn-lightmode">
+        <button onclick="toggleLightMode()">Light Mode</button>
+      </div>
       <h1>Welcome to <span>Dfaalt Books</span></h1>
       <nav>
         <ul>
@@ -33,24 +40,14 @@
           </li>
         </ul>
       </nav>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Enter book title..." />
+        <button onclick="searchBooks()">Search</button>
+      </div>
     </header>
     <div class="container">
       <h1>Dfaalt Books</h1>
-      <div class="logo">
-        <img src="images/dfaalt.jpg" alt="" />
-      </div>
-      <div class="btn-lightmode">
-        <button onclick="toggleLightMode()">Light Mode</button>
-      </div>
       <div class="search-container">
-        <div class="search-box">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Enter book title..."
-          />
-          <button onclick="searchBooks()">Search</button>
-        </div>
         <div class="category">
           <select id="categorySelect">
             <option value="all">All Categories</option>
@@ -86,6 +83,9 @@
           <option value="latest">Latest</option>
           <option value="oldest">Oldest</option>
         </select>
+      </div>
+      <div>
+        <h2 id="searchResultsHeader"></h2>
       </div>
       <div id="searchResults"></div>
       <h2>Recommended Books</h2>
