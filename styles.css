@@ -256,20 +256,28 @@ footer {
   transition: color 0.3s;
 }
 
+.light-mode nav ul li a:hover {
+  color: #149ddd;
+}
+
 .light-mode .btn-lightmode button {
   background-color: #1a1a1a;
   color: #f1f1f1;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
 .light-mode .search-box button {
-  background-color: #1a1a1a;
+  background-color: #0091ea;
   color: #f1f1f1;
   transition: background-color 0.3s, transform 0.3s;
 }
 
+.light-mode .search-box button:hover {
+  background-color: #149ddd;
+}
+
 .light-mode .sort label {
-  color: #1a1a1a;
+  color: #323946;
   transition: color 0.3s;
 }
 
