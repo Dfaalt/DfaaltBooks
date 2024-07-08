@@ -135,8 +135,16 @@ sortSelect.addEventListener("change", function () {
   }
 });
 
-// Function to light/dark mode
-function toggleLightMode() {
-  var body = document.body;
-  body.classList.toggle("light-mode");
-}
+document
+  .querySelector(".btn-lightmode button")
+  .addEventListener("click", function () {
+    document.body.classList.toggle("light-mode");
+    document.body.classList.toggle("dark-mode");
+
+    // Change button text based on current mode
+    if (document.body.classList.contains("light-mode")) {
+      this.textContent = "Dark Mode";
+    } else {
+      this.textContent = "Light Mode";
+    }
+  });

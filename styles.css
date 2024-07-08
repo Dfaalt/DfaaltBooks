@@ -231,7 +231,7 @@ footer {
   gap: 20px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 #recommendedBooks {
@@ -317,7 +317,7 @@ footer {
 
   .btn-lightmode {
     text-align: left;
-    margin-top: 13px;
+    margin-top: 10px;
   }
 
   .btn-lightmode button {
